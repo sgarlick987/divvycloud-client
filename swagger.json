@@ -1,0 +1,2137 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "DivvyCloud v2 API",
+    "description": "DivvyCloud version 2 API documentation. This document is actively being updated. If you are looking for an action not documented here, please send us an email at support@divvycloud.com\n\nDefinitions:\n- Public/Prototype: When the v2 api was started there was a desire to seperate UI specific or internally used endpoints into their own namespaces. All endpoints can be used but we caution use of prototype namespaced api endpoints as documentation and support may vary. Please contact us if you have any questions.\n- X-Auth-Token: Endpoints are authenticated via session token explicitly passed in the header of a request. Sessions can be obtained using the login endpoint. When using the postman runner, logging in will set a session token for the postman environment. User credentials should be set as global postman variables.",
+    "contact": {}
+  },
+  "host": "example.com",
+  "basePath": "/v2",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/prototype/cloud/add": {
+      "post": {
+        "description": "Adding an AWS cloud account to DivvyCloud using AWS access key and AWS secret key. ",
+        "summary": "Add AWS Cloud Account",
+        "tags": [
+          "Add Cloud Account"
+        ],
+        "operationId": "PrototypeCloudAddPost",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AddAWSCloudAccountInstanceAssumeRoleRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AddAWSCloudAccount"
+            },
+            "examples": {
+              "application/json": {
+                "status": "REFRESH",
+                "group_resource_id": "divvyorganizationservice:18",
+                "name": "DivvyCloud Development",
+                "resource_id": "divvyorganizationservice:18",
+                "cloud_type_id": "AWS",
+                "creation_time": "2017-10-25 19:03:50.409391",
+                "id": 18
+              }
+            },
+            "headers": {
+              "Access-Control-Allow-Headers": {
+                "type": "string",
+                "default": "Origin, X-Requested-With, Content-Type, Accept"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string",
+                "default": "POST, GET, OPTIONS"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "234"
+              },
+              "Date": {
+                "type": "string",
+                "default": "Wed, 25 Oct 2017 19:03:45 GMT"
+              },
+              "Server": {
+                "type": "string",
+                "default": "waitress"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/cloudtypes/list": {
+      "get": {
+        "description": "List supported clouds with their type (public/private)",
+        "summary": "List Cloud Types",
+        "tags": [
+          "Clouds"
+        ],
+        "operationId": "PublicCloudtypesListGet",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ListCloudTypes"
+            },
+            "examples": {
+              "application/json": {
+                "clouds": [
+                  {
+                    "cloud_access": "public",
+                    "cloud_type_id": "AWS",
+                    "name": "Amazon Web Services"
+                  },
+                  {
+                    "cloud_access": "public",
+                    "cloud_type_id": "AWS_GOV",
+                    "name": "Amazon Web Services (GovCloud)"
+                  },
+                  {
+                    "cloud_access": "public",
+                    "cloud_type_id": "AZURE",
+                    "name": "Azure (Service Management)"
+                  },
+                  {
+                    "cloud_access": "public",
+                    "cloud_type_id": "AZURE_ARM",
+                    "name": "Azure (ARM)"
+                  },
+                  {
+                    "cloud_access": "public",
+                    "cloud_type_id": "DO",
+                    "name": "DigitalOcean"
+                  },
+                  {
+                    "cloud_access": "public",
+                    "cloud_type_id": "GCE",
+                    "name": "Google Cloud Platform"
+                  },
+                  {
+                    "cloud_access": "private",
+                    "cloud_type_id": "OS",
+                    "name": "OpenStack"
+                  },
+                  {
+                    "cloud_access": "public",
+                    "cloud_type_id": "RAX",
+                    "name": "Rackspace"
+                  },
+                  {
+                    "cloud_access": "public",
+                    "cloud_type_id": "SOFTLAYER",
+                    "name": "IBM SoftLayer"
+                  },
+                  {
+                    "cloud_access": "private",
+                    "cloud_type_id": "VCLOUD_DIRECTOR",
+                    "name": "VMware vCloud Director"
+                  },
+                  {
+                    "cloud_access": "private",
+                    "cloud_type_id": "VMWARE_VSPHERE",
+                    "name": "VMware vSphere"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "access-control-allow-headers": {
+                "type": "string",
+                "default": "Origin, X-Requested-With, Content-Type, Accept"
+              },
+              "access-control-allow-methods": {
+                "type": "string",
+                "default": "POST, GET, OPTIONS"
+              },
+              "access-control-allow-origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "cache-control": {
+                "type": "string",
+                "default": "private, no-cache, no-store, no-transform, must-revalidate, max-age=0"
+              },
+              "content-encoding": {
+                "type": "string",
+                "default": "gzip"
+              },
+              "content-length": {
+                "type": "string",
+                "default": "298"
+              },
+              "content-type": {
+                "type": "string",
+                "default": "application/json"
+              },
+              "date": {
+                "type": "string",
+                "default": "Wed, 25 Oct 2017 14:13:39 GMT"
+              },
+              "last-modified": {
+                "type": "string",
+                "default": "2017-10-25 10:13:39.237937"
+              },
+              "server": {
+                "type": "string",
+                "default": "waitress"
+              },
+              "vary": {
+                "type": "string",
+                "default": "Accept-Encoding"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/clouds/list": {
+      "get": {
+        "description": "List available configured clouds.",
+        "summary": "List Clouds",
+        "tags": [
+          "Clouds"
+        ],
+        "operationId": "PublicCloudsListGet",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "cloud_type_id",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ListClouds"
+            },
+            "examples": {
+              "application/json": {
+                "total_count": 1,
+                "clouds": [
+                  {
+                    "status": "REFRESH",
+                    "group_resource_id": "samplegroupid",
+                    "name": "Sample Cloud",
+                    "resource_id": "sample_resource_id",
+                    "cloud_type_id": "AWS",
+                    "creation_time": "2017-10-17 18:37:30",
+                    "id": 1,
+                    "resources": 900
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "access-control-allow-headers": {
+                "type": "string",
+                "default": "Origin, X-Requested-With, Content-Type, Accept"
+              },
+              "access-control-allow-methods": {
+                "type": "string",
+                "default": "POST, GET, OPTIONS"
+              },
+              "access-control-allow-origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "content-length": {
+                "type": "string",
+                "default": "263"
+              },
+              "content-type": {
+                "type": "string",
+                "default": "application/json"
+              },
+              "date": {
+                "type": "string",
+                "default": "Wed, 25 Oct 2017 14:14:14 GMT"
+              },
+              "server": {
+                "type": "string",
+                "default": "waitress"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/cloud/{cloud_resource_id}/delete": {
+      "post": {
+        "description": "Delete a cloud account. This flips the cloud account status to delete and schedules a job to clean up all resources, properties, etc.",
+        "summary": "Delete Cloud",
+        "tags": [
+          "Clouds"
+        ],
+        "operationId": "PublicCloudDeleteByCloudResourceIdPost",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "cloud_resource_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/prototype/cloud/{cloud_id}/update": {
+      "post": {
+        "description": "Updates a cloud account. This updates the properties of an existing cloud account.",
+        "summary": "Delete Cloud",
+        "tags": [
+          "Clouds"
+        ],
+        "operationId": "PrototypeCloudUpdateByCloudIdPost",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "cloud_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreationParams1"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/prototype/domain/organization/create": {
+      "post": {
+        "description": "Creates a new isolated environment. After creating organizations a domain admin user must switch contexts into the organization using the `Switch organization` endpoint.",
+        "summary": "Create new organization",
+        "tags": [
+          "Organizations"
+        ],
+        "operationId": "PrototypeDomainOrganizationCreatePost",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateneworganizationRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {},
+            "schema": {
+              "$ref": "#/definitions/DomainOrganizationCreateResponse"
+            }
+          }
+        }
+      }
+    },
+    "/prototype/domain/organization/{organization_resource_id}/update": {
+      "post": {
+        "description": "Changes name of organization. Organization names are globally unique for installations. Conflicting names will raise an error.",
+        "summary": "Edit organization name",
+        "tags": [
+          "Organizations"
+        ],
+        "operationId": "PrototypeDomainOrganizationUpdateByOrganizationResourceIdPost",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/EditorganizationnameRequest"
+            }
+          },
+          {
+            "name": "organization_resource_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/prototype/domain/organization/{organization_resource_id}/delete": {
+      "delete": {
+        "description": "Deletes organization and deletes all cloud account and resource data as well as all users and bot data.",
+        "summary": "Delete Organization",
+        "tags": [
+          "Organizations"
+        ],
+        "operationId": "PrototypeDomainOrganizationDeleteByOrganizationResourceIdDelete",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "organization_resource_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/public/resource/{resource_id}/detail": {
+      "get": {
+        "description": "Get all of the details about a resource including its dependencies.",
+        "summary": "Detail Resource",
+        "tags": [
+          "Resources"
+        ],
+        "operationId": "PublicResourceDetailByResourceIdGet",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "resource_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DetailResource"
+            },
+            "examples": {
+              "application/json": {
+                "dependencies": {},
+                "details": {
+                  "resource_type": "storagecontainer",
+                  "storagecontainer": {
+                    "common": {
+                      "account": "Chef's Cloud Acct",
+                      "cloud": "AWS",
+                      "creation_timestamp": "2017-09-26 16:17:45",
+                      "discovered_timestamp": "2017-09-26 16:26:08",
+                      "modified_timestamp": "2017-10-24 23:12:00",
+                      "noncompliance": [
+                        {
+                          "reporter_resource_id": "divvybot:1:21",
+                          "resource_id": "storagecontainer:2:us-east-1:storagecontainer:"
+                        },
+                        {
+                          "reporter_resource_id": "divvybot:1:41",
+                          "resource_id": "storagecontainer:2:us-east-1:storagecontainer:"
+                        }
+                      ],
+                      "organization_service_id": 2,
+                      "properties": {
+                        "property_list": []
+                      },
+                      "region": "us-east-1",
+                      "resource_id": "storagecontainer:2:us-east-1:storagecontainer:",
+                      "resource_name": "storagecontainer",
+                      "resource_type": "storagecontainer"
+                    },
+                    "creation_date": "2017-09-26 16:17:45",
+                    "encrypted": true,
+                    "object_count": 0,
+                    "total_size": 0
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Access-Control-Allow-Headers": {
+                "type": "string",
+                "default": "Origin, X-Requested-With, Content-Type, Accept"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string",
+                "default": "POST, GET, OPTIONS"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Cache-Control": {
+                "type": "string",
+                "default": "private, no-cache, no-store, no-transform, must-revalidate, max-age=0"
+              },
+              "Content-Encoding": {
+                "type": "string",
+                "default": "gzip"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "399"
+              },
+              "Date": {
+                "type": "string",
+                "default": "Wed, 25 Oct 2017 16:58:21 GMT"
+              },
+              "Last-Modified": {
+                "type": "string",
+                "default": "2017-10-25 12:58:21.494332"
+              },
+              "Server": {
+                "type": "string",
+                "default": "waitress"
+              },
+              "Vary": {
+                "type": "string",
+                "default": "Accept-Encoding"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/user/login": {
+      "post": {
+        "description": "Authenticate User, returns X-Auth-Token",
+        "summary": "Login",
+        "tags": [
+          "Users"
+        ],
+        "operationId": "PublicUserLoginPost",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/LoginRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/OriginalAuth"
+            },
+            "examples": {
+              "application/json": {
+                "user_id": 1,
+                "session_id": "4a57825623be496db8796f9894d471b5",
+                "session_timeout": 20,
+                "customer_id": "92:BF:28:F6:B8:A9:ED:6E:3B:83:0B:A6:55:5E:24:AB:41:B5:D4:D7",
+                "user_name": "Saran Ahluwalia",
+                "auth_plugin_exists": false,
+                "user_email": "saran@divvycloud.com",
+                "system_admin": true
+              }
+            },
+            "headers": {
+              "Access-Control-Allow-Headers": {
+                "type": "string",
+                "default": "Origin, X-Requested-With, Content-Type, Accept"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string",
+                "default": "POST, GET, OPTIONS"
+              },
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "*"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "286"
+              },
+              "Date": {
+                "type": "string",
+                "default": "Mon, 07 Nov 2016 15:12:28 GMT"
+              },
+              "Server": {
+                "type": "string",
+                "default": "waitress"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "DomainOrganizationCreateResponse": {
+      "title": "DomainOrganizationCreateResponse",
+      "type": "object",
+      "properties": {
+        "organization_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "resource_id": {
+          "type": "string"
+        }
+      }
+    },
+    "CreationParams": {
+      "title": "CreationParams",
+      "type": "object",
+      "properties": {
+        "cloud_type": {
+          "type": "string"
+        },
+        "authentication_type": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "account_number": {
+          "type": "string"
+        },
+        "api_key": {
+          "type": "string"
+        },
+        "secret_key": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "cloud_type",
+        "authentication_type",
+        "name",
+        "account_number",
+        "api_key",
+        "secret_key"
+      ]
+    },
+    "AddAWSCloudAccount": {
+      "title": "AddAWSCloudAccount",
+      "example": {
+        "status": "REFRESH",
+        "group_resource_id": "divvyorganizationservice:18",
+        "name": "DivvyCloud Development",
+        "resource_id": "divvyorganizationservice:18",
+        "cloud_type_id": "AWS",
+        "creation_time": "2017-10-25 19:03:50.409391",
+        "id": 18
+      },
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "group_resource_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "resource_id": {
+          "type": "string"
+        },
+        "cloud_type_id": {
+          "type": "string"
+        },
+        "creation_time": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "status",
+        "group_resource_id",
+        "name",
+        "resource_id",
+        "cloud_type_id",
+        "creation_time",
+        "id"
+      ]
+    },
+    "AddAWSCloudAccountInstanceAssumeRoleRequest": {
+      "title": "AddAWSCloudAccountInstanceAssumeRoleRequest",
+      "example": {
+        "creation_params": {
+          "cloud_type": "AWS",
+          "authentication_type": "instance_assume_role",
+          "name": "DivvyCloud Development",
+          "external_id": "only support if used",
+          "account_number": "0123456789012",
+          "role_arn": "ARN_STRING_HERE",
+          "duration": 3600,
+          "session_name": "DivvyCloud"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "creation_params": {
+          "$ref": "#/definitions/CreationParams1"
+        }
+      },
+      "required": [
+        "creation_params"
+      ]
+    },
+    "CreationParams1": {
+      "title": "CreationParams1",
+      "type": "object",
+      "properties": {
+        "cloud_type": {
+          "type": "string"
+        },
+        "authentication_type": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "account_number": {
+          "type": "string"
+        },
+        "role_arn": {
+          "type": "string"
+        },
+        "duration": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "session_name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "cloud_type",
+        "authentication_type",
+        "name",
+        "account_number",
+        "role_arn",
+        "duration",
+        "session_name"
+      ]
+    },
+    "CreationParams2": {
+      "title": "CreationParams2",
+      "type": "object",
+      "properties": {
+        "cloud_type": {
+          "type": "string"
+        },
+        "authentication_type": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "account_number": {
+          "type": "string"
+        },
+        "api_key": {
+          "type": "string"
+        },
+        "secret_key": {
+          "type": "string"
+        },
+        "role_arn": {
+          "type": "string"
+        },
+        "external_id": {
+          "type": "string"
+        },
+        "duration": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "session_name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "cloud_type",
+        "authentication_type",
+        "name",
+        "account_number",
+        "api_key",
+        "secret_key",
+        "role_arn",
+        "external_id",
+        "duration",
+        "session_name"
+      ]
+    },
+    "ListCloudTypes": {
+      "title": "ListCloudTypes",
+      "example": {
+        "clouds": [
+          {
+            "cloud_access": "public",
+            "cloud_type_id": "AWS",
+            "name": "Amazon Web Services"
+          },
+          {
+            "cloud_access": "public",
+            "cloud_type_id": "AWS_GOV",
+            "name": "Amazon Web Services (GovCloud)"
+          },
+          {
+            "cloud_access": "public",
+            "cloud_type_id": "AZURE",
+            "name": "Azure (Service Management)"
+          },
+          {
+            "cloud_access": "public",
+            "cloud_type_id": "AZURE_ARM",
+            "name": "Azure (ARM)"
+          },
+          {
+            "cloud_access": "public",
+            "cloud_type_id": "DO",
+            "name": "DigitalOcean"
+          },
+          {
+            "cloud_access": "public",
+            "cloud_type_id": "GCE",
+            "name": "Google Cloud Platform"
+          },
+          {
+            "cloud_access": "private",
+            "cloud_type_id": "OS",
+            "name": "OpenStack"
+          },
+          {
+            "cloud_access": "public",
+            "cloud_type_id": "RAX",
+            "name": "Rackspace"
+          },
+          {
+            "cloud_access": "public",
+            "cloud_type_id": "SOFTLAYER",
+            "name": "IBM SoftLayer"
+          },
+          {
+            "cloud_access": "private",
+            "cloud_type_id": "VCLOUD_DIRECTOR",
+            "name": "VMware vCloud Director"
+          },
+          {
+            "cloud_access": "private",
+            "cloud_type_id": "VMWARE_VSPHERE",
+            "name": "VMware vSphere"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "clouds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Cloud"
+          }
+        }
+      },
+      "required": [
+        "clouds"
+      ]
+    },
+    "Cloud": {
+      "title": "Cloud",
+      "type": "object",
+      "properties": {
+        "cloud_access": {
+          "example": "public",
+          "type": "string"
+        },
+        "cloud_type_id": {
+          "example": "AWS",
+          "type": "string"
+        },
+        "name": {
+          "example": "Amazon Web Services",
+          "type": "string"
+        }
+      },
+      "required": [
+        "cloud_access",
+        "cloud_type_id",
+        "name"
+      ]
+    },
+    "ListClouds": {
+      "title": "ListClouds",
+      "example": {
+        "total_count": 1,
+        "clouds": [
+          {
+            "status": "REFRESH",
+            "group_resource_id": "samplegroupid",
+            "name": "Sample Cloud",
+            "resource_id": "sample_resource_id",
+            "cloud_type_id": "AWS",
+            "creation_time": "2017-10-17 18:37:30",
+            "id": 1,
+            "resources": 900
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "total_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "clouds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Cloud1"
+          }
+        }
+      },
+      "required": [
+        "total_count",
+        "clouds"
+      ]
+    },
+    "Cloud1": {
+      "title": "Cloud1",
+      "type": "object",
+      "properties": {
+        "status": {
+          "example": "REFRESH",
+          "type": "string"
+        },
+        "group_resource_id": {
+          "example": "samplegroupid",
+          "type": "string"
+        },
+        "name": {
+          "example": "Sample Cloud",
+          "type": "string"
+        },
+        "resource_id": {
+          "example": "sample_resource_id",
+          "type": "string"
+        },
+        "cloud_type_id": {
+          "example": "AWS",
+          "type": "string"
+        },
+        "creation_time": {
+          "example": "2017-10-17 18:37:30",
+          "type": "string"
+        },
+        "id": {
+          "example": 1,
+          "type": "integer",
+          "format": "int32"
+        },
+        "resources": {
+          "example": 900,
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "status",
+        "group_resource_id",
+        "name",
+        "resource_id",
+        "cloud_type_id",
+        "creation_time",
+        "id",
+        "resources"
+      ]
+    },
+    "ListProvisioningClouds": {
+      "title": "ListProvisioningClouds",
+      "example": {
+        "clouds": [
+          {
+            "status": "REFRESH",
+            "group_resource_id": "test_resource_id",
+            "name": "Test Name",
+            "resource_id": "test_resource_id",
+            "cloud_type_id": "GCP",
+            "creation_time": "2017-10-17 18:37:30",
+            "id": 1
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "clouds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Cloud2"
+          }
+        }
+      },
+      "required": [
+        "clouds"
+      ]
+    },
+    "Cloud2": {
+      "title": "Cloud2",
+      "type": "object",
+      "properties": {
+        "status": {
+          "example": "REFRESH",
+          "type": "string"
+        },
+        "group_resource_id": {
+          "example": "test_resource_id",
+          "type": "string"
+        },
+        "name": {
+          "example": "Test Name",
+          "type": "string"
+        },
+        "resource_id": {
+          "example": "test_resource_id",
+          "type": "string"
+        },
+        "cloud_type_id": {
+          "example": "GCP",
+          "type": "string"
+        },
+        "creation_time": {
+          "example": "2017-10-17 18:37:30",
+          "type": "string"
+        },
+        "id": {
+          "example": 1,
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "status",
+        "group_resource_id",
+        "name",
+        "resource_id",
+        "cloud_type_id",
+        "creation_time",
+        "id"
+      ]
+    },
+    "ListCloudRegions": {
+      "title": "ListCloudRegions",
+      "example": {
+        "regions": [
+          {
+            "status": "ACTIVE",
+            "id": "ap-northeast-1",
+            "harvest_rate_multiplier": 1.0,
+            "name": "ap-northeast-1",
+            "resource_id": "serviceregion:1:ap-northeast-1:"
+          },
+          {
+            "status": "ACTIVE",
+            "id": "ap-northeast-2",
+            "harvest_rate_multiplier": 1.0,
+            "name": "ap-northeast-2",
+            "resource_id": "serviceregion:1:ap-northeast-2:"
+          },
+          {
+            "status": "ACTIVE",
+            "id": "ap-south-1",
+            "harvest_rate_multiplier": 1.0,
+            "name": "ap-south-1",
+            "resource_id": "serviceregion:1:ap-south-1:"
+          },
+          {
+            "status": "ACTIVE",
+            "id": "ap-southeast-1",
+            "harvest_rate_multiplier": 1.0,
+            "name": "ap-southeast-1",
+            "resource_id": "serviceregion:1:ap-southeast-1:"
+          },
+          {
+            "status": "ACTIVE",
+            "id": "ap-southeast-2",
+            "harvest_rate_multiplier": 1.0,
+            "name": "ap-southeast-2",
+            "resource_id": "serviceregion:1:ap-southeast-2:"
+          },
+          {
+            "status": "ACTIVE",
+            "id": "ca-central-1",
+            "harvest_rate_multiplier": 1.0,
+            "name": "ca-central-1",
+            "resource_id": "serviceregion:1:ca-central-1:"
+          },
+          {
+            "status": "ACTIVE",
+            "id": "eu-central-1",
+            "harvest_rate_multiplier": 1.0,
+            "name": "eu-central-1",
+            "resource_id": "serviceregion:1:eu-central-1:"
+          },
+          {
+            "status": "ACTIVE",
+            "id": "eu-west-1",
+            "harvest_rate_multiplier": 1.0,
+            "name": "eu-west-1",
+            "resource_id": "serviceregion:1:eu-west-1:"
+          },
+          {
+            "status": "ACTIVE",
+            "id": "eu-west-2",
+            "harvest_rate_multiplier": 1.0,
+            "name": "eu-west-2",
+            "resource_id": "serviceregion:1:eu-west-2:"
+          },
+          {
+            "status": "ACTIVE",
+            "id": "sa-east-1",
+            "harvest_rate_multiplier": 1.0,
+            "name": "sa-east-1",
+            "resource_id": "serviceregion:1:sa-east-1:"
+          },
+          {
+            "status": "ACTIVE",
+            "id": "us-east-1",
+            "harvest_rate_multiplier": 1.0,
+            "name": "us-east-1",
+            "resource_id": "serviceregion:1:us-east-1:"
+          },
+          {
+            "status": "ACTIVE",
+            "id": "us-east-2",
+            "harvest_rate_multiplier": 1.0,
+            "name": "us-east-2",
+            "resource_id": "serviceregion:1:us-east-2:"
+          },
+          {
+            "status": "ACTIVE",
+            "id": "us-west-1",
+            "harvest_rate_multiplier": 1.0,
+            "name": "us-west-1",
+            "resource_id": "serviceregion:1:us-west-1:"
+          },
+          {
+            "status": "ACTIVE",
+            "id": "us-west-2",
+            "harvest_rate_multiplier": 1.0,
+            "name": "us-west-2",
+            "resource_id": "serviceregion:1:us-west-2:"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "regions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Region"
+          }
+        }
+      },
+      "required": [
+        "regions"
+      ]
+    },
+    "Region": {
+      "title": "Region",
+      "type": "object",
+      "properties": {
+        "status": {
+          "example": "ACTIVE",
+          "type": "string"
+        },
+        "id": {
+          "example": "ap-northeast-1",
+          "type": "string"
+        },
+        "harvest_rate_multiplier": {
+          "example": 1,
+          "type": "number",
+          "format": "double"
+        },
+        "name": {
+          "example": "ap-northeast-1",
+          "type": "string"
+        },
+        "resource_id": {
+          "example": "serviceregion:1:ap-northeast-1:",
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "id",
+        "harvest_rate_multiplier",
+        "name",
+        "resource_id"
+      ]
+    },
+    "QueryResourcesRequest": {
+      "title": "QueryResourcesRequest",
+      "example": {
+        "scopes": [],
+        "filters": [],
+        "offset": 0,
+        "limit": 25,
+        "order_by": ""
+      },
+      "type": "object",
+      "properties": {
+        "scopes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "filters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "order_by": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "scopes",
+        "filters",
+        "offset",
+        "limit",
+        "order_by"
+      ]
+    },
+    "QueryResources": {
+      "title": "QueryResources",
+      "example": {
+        "scopes": [],
+        "limit": 25,
+        "filters": [],
+        "offset": 0,
+        "order_by": "",
+        "counts": {
+          "serviceaccesskey": 34,
+          "serviceencryptionkey": 0,
+          "servicecertificate": 4,
+          "servicerole": 29,
+          "networkpeer": 1,
+          "networkinterface": 143,
+          "mcsnapshot": 0,
+          "serviceuser": 32,
+          "servicegroup": 4,
+          "networkflowlog": 8,
+          "divvyorganizationservice": 6,
+          "servicepolicy": 907,
+          "privatesubnet": 186,
+          "publicip": 34,
+          "instance": 67,
+          "bigdatasnapshot": 9,
+          "resourceaccesslist": 292,
+          "servicealarm": 2,
+          "resourceaccesslistrule": 785,
+          "instancereservation": 0,
+          "storagecontainer": 54,
+          "volume": 101,
+          "internetgateway": 54,
+          "bigdatainstance": 2,
+          "dbinstance": 16,
+          "privatenetwork": 73,
+          "mcinstance": 3,
+          "dbsnapshot": 135,
+          "hypervisor": 0,
+          "routetable": 78,
+          "privateimage": 106,
+          "dnszone": 5,
+          "snapshot": 160,
+          "serviceregion": 92,
+          "apiaccountingconfig": 3,
+          "sshkeypair": 55,
+          "loadbalancer": 10
+        },
+        "selected_resource_type": null,
+        "resources": [],
+        "supported_types": [
+          "instance",
+          "volume",
+          "snapshot",
+          "serviceuser",
+          "servicegroup",
+          "servicerole",
+          "servicepolicy",
+          "servicecertificate",
+          "bigdatainstance",
+          "dbinstance",
+          "internetgateway",
+          "mcinstance",
+          "resourceaccesslist",
+          "resourceaccesslistrule",
+          "storagecontainer",
+          "privateimage",
+          "privatenetwork",
+          "privatesubnet",
+          "networkflowlog",
+          "networkinterface",
+          "networkpeer",
+          "publicip",
+          "loadbalancer",
+          "instancereservation",
+          "dbsnapshot",
+          "mcsnapshot",
+          "bigdatasnapshot",
+          "routetable",
+          "hypervisor",
+          "apiaccountingconfig",
+          "serviceaccesskey",
+          "serviceencryptionkey",
+          "divvyorganizationservice",
+          "servicealarm",
+          "serviceregion",
+          "sshkeypair",
+          "dnszone"
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "scopes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "filters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "order_by": {
+          "type": "string"
+        },
+        "counts": {
+          "$ref": "#/definitions/Counts1"
+        },
+        "selected_resource_type": {
+          "type": "string"
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "supported_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "scopes",
+        "limit",
+        "filters",
+        "offset",
+        "order_by",
+        "counts",
+        "resources",
+        "supported_types"
+      ]
+    },
+    "Counts1": {
+      "title": "Counts1",
+      "type": "object",
+      "properties": {
+        "serviceaccesskey": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "serviceencryptionkey": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "servicecertificate": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "servicerole": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "networkpeer": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "networkinterface": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "mcsnapshot": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "serviceuser": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "servicegroup": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "networkflowlog": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "divvyorganizationservice": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "servicepolicy": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "privatesubnet": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "publicip": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "instance": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "bigdatasnapshot": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "resourceaccesslist": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "servicealarm": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "resourceaccesslistrule": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "instancereservation": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "storagecontainer": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "volume": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "internetgateway": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "bigdatainstance": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "dbinstance": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "privatenetwork": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "mcinstance": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "dbsnapshot": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "hypervisor": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "routetable": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "privateimage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "dnszone": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "snapshot": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "serviceregion": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "apiaccountingconfig": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sshkeypair": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "loadbalancer": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "serviceaccesskey",
+        "serviceencryptionkey",
+        "servicecertificate",
+        "servicerole",
+        "networkpeer",
+        "networkinterface",
+        "mcsnapshot",
+        "serviceuser",
+        "servicegroup",
+        "networkflowlog",
+        "divvyorganizationservice",
+        "servicepolicy",
+        "privatesubnet",
+        "publicip",
+        "instance",
+        "bigdatasnapshot",
+        "resourceaccesslist",
+        "servicealarm",
+        "resourceaccesslistrule",
+        "instancereservation",
+        "storagecontainer",
+        "volume",
+        "internetgateway",
+        "bigdatainstance",
+        "dbinstance",
+        "privatenetwork",
+        "mcinstance",
+        "dbsnapshot",
+        "hypervisor",
+        "routetable",
+        "privateimage",
+        "dnszone",
+        "snapshot",
+        "serviceregion",
+        "apiaccountingconfig",
+        "sshkeypair",
+        "loadbalancer"
+      ]
+    },
+    "QueryResourceRequest": {
+      "title": "QueryResourceRequest",
+      "example": {
+        "scopes": [],
+        "filters": [],
+        "offset": 0,
+        "limit": 25,
+        "order_by": "",
+        "selected_resource_type": ""
+      },
+      "type": "object",
+      "properties": {
+        "scopes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "filters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "order_by": {
+          "type": "string"
+        },
+        "selected_resource_type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "scopes",
+        "filters",
+        "offset",
+        "limit",
+        "order_by",
+        "selected_resource_type"
+      ]
+    },
+    "OriginalAuth": {
+      "title": "OriginalAuth",
+      "example": {
+        "user_id": 1,
+        "session_id": "4a57825623be496db8796f9894d471b5",
+        "session_timeout": 20,
+        "customer_id": "92:BF:28:F6:B8:A9:ED:6E:3B:83:0B:A6:55:5E:24:AB:41:B5:D4:D7",
+        "user_name": "Saran Ahluwalia",
+        "auth_plugin_exists": false,
+        "user_email": "saran@divvycloud.com",
+        "system_admin": true
+      },
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "session_id": {
+          "type": "string"
+        },
+        "session_timeout": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "customer_id": {
+          "type": "string"
+        },
+        "user_name": {
+          "type": "string"
+        },
+        "auth_plugin_exists": {
+          "type": "boolean"
+        },
+        "user_email": {
+          "type": "string"
+        },
+        "system_admin": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "user_id",
+        "session_id",
+        "session_timeout",
+        "customer_id",
+        "user_name",
+        "auth_plugin_exists",
+        "user_email",
+        "system_admin"
+      ]
+    },
+    "DetailResource": {
+      "title": "DetailResource",
+      "example": {
+        "dependencies": {},
+        "details": {
+          "resource_type": "storagecontainer",
+          "storagecontainer": {
+            "common": {
+              "account": "Chef's Cloud Acct",
+              "cloud": "AWS",
+              "creation_timestamp": "2017-09-26 16:17:45",
+              "discovered_timestamp": "2017-09-26 16:26:08",
+              "modified_timestamp": "2017-10-24 23:12:00",
+              "noncompliance": [
+                {
+                  "reporter_resource_id": "divvybot:1:21",
+                  "resource_id": "storagecontainer:2:us-east-1:storagecontainer:"
+                },
+                {
+                  "reporter_resource_id": "divvybot:1:41",
+                  "resource_id": "storagecontainer:2:us-east-1:storagecontainer:"
+                }
+              ],
+              "organization_service_id": 2,
+              "properties": {
+                "property_list": []
+              },
+              "region": "us-east-1",
+              "resource_id": "storagecontainer:2:us-east-1:storagecontainer:",
+              "resource_name": "storagecontainer",
+              "resource_type": "storagecontainer"
+            },
+            "creation_date": "2017-09-26 16:17:45",
+            "encrypted": true,
+            "object_count": 0,
+            "total_size": 0
+          }
+        }
+      },
+      "type": "object",
+      "properties": {
+        "dependencies": {
+          "type": "object"
+        },
+        "details": {
+          "$ref": "#/definitions/Details1"
+        }
+      },
+      "required": [
+        "dependencies",
+        "details"
+      ]
+    },
+    "Details1": {
+      "title": "Details1",
+      "type": "object",
+      "properties": {
+        "resource_type": {
+          "type": "string"
+        },
+        "storagecontainer": {
+          "$ref": "#/definitions/Storagecontainer"
+        }
+      },
+      "required": [
+        "resource_type",
+        "storagecontainer"
+      ]
+    },
+    "Storagecontainer": {
+      "title": "Storagecontainer",
+      "type": "object",
+      "properties": {
+        "common": {
+          "$ref": "#/definitions/Common7"
+        },
+        "creation_date": {
+          "type": "string"
+        },
+        "encrypted": {
+          "type": "boolean"
+        },
+        "object_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total_size": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "common",
+        "creation_date",
+        "encrypted",
+        "object_count",
+        "total_size"
+      ]
+    },
+    "Common7": {
+      "title": "Common7",
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "string"
+        },
+        "cloud": {
+          "type": "string"
+        },
+        "creation_timestamp": {
+          "type": "string"
+        },
+        "discovered_timestamp": {
+          "type": "string"
+        },
+        "modified_timestamp": {
+          "type": "string"
+        },
+        "noncompliance": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Noncompliance"
+          }
+        },
+        "organization_service_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "properties": {
+          "$ref": "#/definitions/Properties"
+        },
+        "region": {
+          "type": "string"
+        },
+        "resource_id": {
+          "type": "string"
+        },
+        "resource_name": {
+          "type": "string"
+        },
+        "resource_type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "account",
+        "cloud",
+        "creation_timestamp",
+        "discovered_timestamp",
+        "modified_timestamp",
+        "noncompliance",
+        "organization_service_id",
+        "properties",
+        "region",
+        "resource_id",
+        "resource_name",
+        "resource_type"
+      ]
+    },
+    "Properties": {
+      "title": "Properties",
+      "example": {
+        "property_list": []
+      },
+      "type": "object",
+      "properties": {
+        "property_list": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "property_list"
+      ]
+    },
+    "Noncompliance": {
+      "title": "Noncompliance",
+      "type": "object",
+      "properties": {
+        "reporter_resource_id": {
+          "example": "divvybot:1:21",
+          "type": "string"
+        },
+        "resource_id": {
+          "example": "storagecontainer:2:us-east-1:storagecontainer:",
+          "type": "string"
+        }
+      },
+      "required": [
+        "reporter_resource_id",
+        "resource_id"
+      ]
+    },
+    "CreateneworganizationRequest": {
+      "title": "CreateneworganizationRequest",
+      "example": {
+        "organization_name": "Placeholder Name"
+      },
+      "type": "object",
+      "properties": {
+        "organization_name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "organization_name"
+      ]
+    },
+    "EditorganizationnameRequest": {
+      "title": "EditorganizationnameRequest",
+      "example": {
+        "organization_name": "New Name"
+      },
+      "type": "object",
+      "properties": {
+        "organization_name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "organization_name"
+      ]
+    },
+    "LoginRequest": {
+      "title": "LoginRequest",
+      "example": {
+        "username": "{{divvy_username}}",
+        "password": "{{divvy_password}}"
+      },
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "username",
+        "password"
+      ]
+    }
+
+  },
+  "tags": [
+    {
+      "name": "Add Cloud Account",
+      "description": "Adding a cloud account. "
+    },
+    {
+      "name": "Clouds",
+      "description": "Cloud accounts. "
+    },
+    {
+      "name": "Organizations",
+      "description": "Organizations are isolated environments that contain cloud accounts, users and bots."
+    },
+    {
+      "name": "Resources",
+      "description": "Resource functionality"
+    }
+  ]
+}
