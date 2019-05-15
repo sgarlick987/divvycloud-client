@@ -13,6 +13,7 @@ import (
 
 	"github.com/sgarlick987/godivvycloud/client/add_cloud_account"
 	"github.com/sgarlick987/godivvycloud/client/clouds"
+	"github.com/sgarlick987/godivvycloud/client/event_driven_harvesting"
 	"github.com/sgarlick987/godivvycloud/client/organizations"
 	"github.com/sgarlick987/godivvycloud/client/resources"
 	"github.com/sgarlick987/godivvycloud/client/users"
@@ -64,6 +65,8 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *DivvyCloud
 	cli.AddCloudAccount = add_cloud_account.New(transport, formats)
 
 	cli.Clouds = clouds.New(transport, formats)
+
+	cli.EventDrivenHarvesting = event_driven_harvesting.New(transport, formats)
 
 	cli.Organizations = organizations.New(transport, formats)
 
@@ -119,6 +122,8 @@ type DivvyCloudV2 struct {
 
 	Clouds *clouds.Client
 
+	EventDrivenHarvesting *event_driven_harvesting.Client
+
 	Organizations *organizations.Client
 
 	Resources *resources.Client
@@ -135,6 +140,8 @@ func (c *DivvyCloudV2) SetTransport(transport runtime.ClientTransport) {
 	c.AddCloudAccount.SetTransport(transport)
 
 	c.Clouds.SetTransport(transport)
+
+	c.EventDrivenHarvesting.SetTransport(transport)
 
 	c.Organizations.SetTransport(transport)
 

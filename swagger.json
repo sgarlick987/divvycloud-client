@@ -18,6 +18,280 @@
     "application/json"
   ],
   "paths": {
+    "/public/cloud/eventdrivenharvest/{organizationid}": {
+      "post": {
+        "description": "TODO: Add Description",
+        "summary": "Add Consumer",
+        "tags": [
+          "Event Driven Harvesting"
+        ],
+        "operationId": "PublicCloudEventdrivenharvestByOrganizationidPost",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "organizationid",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/public/cloud/eventdrivenharvest/consumer/{organizationid}/producers/add": {
+      "post": {
+        "description": "TODO: Add Description",
+        "summary": "Add Producer",
+        "tags": [
+          "Event Driven Harvesting"
+        ],
+        "operationId": "PublicCloudEventdrivenharvestConsumerProducersAddByOrganizationidPost",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AddProducerRequest"
+            }
+          },
+          {
+            "name": "organizationid",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/public/cloud/consumers": {
+      "get": {
+        "description": "TODO: Add Description",
+        "summary": "List Consumers",
+        "tags": [
+          "Event Driven Harvesting"
+        ],
+        "operationId": "PublicCloudConsumersGet",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ListConsumers"
+            },
+            "examples": {
+              "application/json": {
+                "consumers": [
+                  {
+                    "producers": 0,
+                    "errors": [],
+                    "organization_service_id": 10,
+                    "name": "Divvycloud - Consumer",
+                    "cloud_type_id": "AWS",
+                    "events": 38,
+                    "pending": false,
+                    "account_id": "1234567890"
+                  }
+                ]
+              }
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/public/cloud/producers/list": {
+      "post": {
+        "description": "TODO: Add Description",
+        "summary": "List Producers",
+        "tags": [
+          "Event Driven Harvesting"
+        ],
+        "operationId": "PublicCloudProducersListPost",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/public/cloud/eventdrivenharvest/{organizationid}/disable-consumer": {
+      "delete": {
+        "description": "TODO: Add Description",
+        "summary": "Remove Consumer",
+        "tags": [
+          "Event Driven Harvesting"
+        ],
+        "operationId": "PublicCloudEventdrivenharvestDisableConsumerByOrganizationidDelete",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "organizationid",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/public/cloud/eventdrivenharvest/producers/disable": {
+      "post": {
+        "description": "TODO: Add Description",
+        "summary": "Remove Producer",
+        "tags": [
+          "Event Driven Harvesting"
+        ],
+        "operationId": "PublicCloudEventdrivenharvestProducersDisablePost",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/RemoveProducerRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
     "/prototype/cloud/add": {
       "post": {
         "description": "Adding an AWS cloud account to DivvyCloud using AWS access key and AWS secret key. ",
@@ -2092,6 +2366,240 @@
       },
       "required": [
         "organization_name"
+      ]
+    },
+    "AddProducerRequest": {
+      "title": "AddProducerRequest",
+      "example": {
+        "organization_service_ids": [
+          14
+        ],
+        "regions": [
+          "us-east-1",
+          "us-east-2",
+          "us-west-1",
+          "us-west-2",
+          "eu-west-1",
+          "eu-west-2",
+          "eu-west-3",
+          "eu-central-1",
+          "ap-northeast-1",
+          "ap-northeast-2",
+          "ap-southeast-1",
+          "ap-southeast-2",
+          "sa-east-1",
+          "ap-south-1",
+          "ca-central-1",
+          "eu-north-1"
+        ],
+        "resource_types": [
+          "bigdatainstance",
+          "autoscalinggroup",
+          "autoscalinglaunchconfiguration",
+          "instance",
+          "volume",
+          "snapshot",
+          "storagecontainer",
+          "resourceaccesslist",
+          "loadbalancer",
+          "privatenetwork",
+          "privatesubnet",
+          "secret",
+          "serviceuser",
+          "servicegroup",
+          "servicerole",
+          "serviceaccesskey",
+          "serviceencryptionkey",
+          "sshkeypair",
+          "networkinterface",
+          "internetgateway",
+          "natgateway",
+          "routetable",
+          "servicepolicy",
+          "dbinstance",
+          "dbcluster",
+          "dbsnapshot",
+          "identityprovider",
+          "serviceloggroup",
+          "hypervisor",
+          "networkflowlog",
+          "networkpeer",
+          "awsplacementgroup",
+          "mcinstance",
+          "esinstance",
+          "notificationtopic",
+          "notificationsubscription",
+          "stacktemplate",
+          "divvyorganizationservice",
+          "restapikey"
+        ],
+        "enable_all_types": false,
+        "propagate": {
+          "by_badge": false,
+          "badges": [],
+          "by_consumer": false
+        }
+      },
+      "type": "object",
+      "properties": {
+        "organization_service_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "regions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "resource_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "enable_all_types": {
+          "type": "boolean"
+        },
+        "propagate": {
+          "$ref": "#/definitions/Propagate"
+        }
+      },
+      "required": [
+        "organization_service_ids",
+        "regions",
+        "resource_types",
+        "enable_all_types",
+        "propagate"
+      ]
+    },
+    "Propagate": {
+      "title": "Propagate",
+      "type": "object",
+      "properties": {
+        "by_badge": {
+          "type": "boolean"
+        },
+        "badges": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "by_consumer": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "by_badge",
+        "badges",
+        "by_consumer"
+      ]
+    },
+    "ListConsumers": {
+      "title": "ListConsumers",
+      "example": {
+        "consumers": [
+          {
+            "producers": 0,
+            "errors": [],
+            "organization_service_id": 10,
+            "name": "Divvycloud - Consumer",
+            "cloud_type_id": "AWS",
+            "events": 38,
+            "pending": false,
+            "account_id": "1234567890"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "consumers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Consumer"
+          }
+        }
+      },
+      "required": [
+        "consumers"
+      ]
+    },
+    "Consumer": {
+      "title": "Consumer",
+      "type": "object",
+      "properties": {
+        "producers": {
+          "example": 0,
+          "type": "integer",
+          "format": "int32"
+        },
+        "errors": {
+          "example": [],
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "organization_service_id": {
+          "example": 10,
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "example": "Divvycloud - Consumer",
+          "type": "string"
+        },
+        "cloud_type_id": {
+          "example": "AWS",
+          "type": "string"
+        },
+        "events": {
+          "example": 38,
+          "type": "integer",
+          "format": "int32"
+        },
+        "pending": {
+          "example": false,
+          "type": "boolean"
+        },
+        "account_id": {
+          "example": "1234567890",
+          "type": "string"
+        }
+      },
+      "required": [
+        "producers",
+        "errors",
+        "organization_service_id",
+        "name",
+        "cloud_type_id",
+        "events",
+        "pending",
+        "account_id"
+      ]
+    },
+    "RemoveProducerRequest": {
+      "title": "RemoveProducerRequest",
+      "example": {
+        "resource_ids": [
+          "divvyorganizationservice:14"
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "resource_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "resource_ids"
       ]
     },
     "LoginRequest": {
