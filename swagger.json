@@ -61,6 +61,76 @@
         }
       }
     },
+    "/public/cloud/eventdrivenharvest": {
+      "post": {
+        "description": "Enables Event Driven Harvesting for the current org",
+        "summary": "Enable Event Driven Harvesting",
+        "tags": [
+          "Event Driven Harvesting"
+        ],
+        "operationId": "PublicCloudEventdrivenharvestEnable",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "delete": {
+        "description": "Disables Event Driven Harvesting for the current org",
+        "summary": "Disable Event Driven Harvesting",
+        "tags": [
+          "Event Driven Harvesting"
+        ],
+        "operationId": "PublicCloudEventdrivenharvestDisable",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
     "/public/cloud/eventdrivenharvest/consumer/{organizationid}/producers/add": {
       "post": {
         "description": "TODO: Add Description",
@@ -2622,7 +2692,6 @@
         "password"
       ]
     }
-
   },
   "tags": [
     {

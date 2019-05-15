@@ -115,6 +115,36 @@ func (a *Client) PublicCloudEventdrivenharvestConsumerProducersAddByOrganization
 }
 
 /*
+PublicCloudEventdrivenharvestDisable disables event driven harvesting
+
+Disables Event Driven Harvesting for the current org
+*/
+func (a *Client) PublicCloudEventdrivenharvestDisable(params *PublicCloudEventdrivenharvestDisableParams) (*PublicCloudEventdrivenharvestDisableOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicCloudEventdrivenharvestDisableParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicCloudEventdrivenharvestDisable",
+		Method:             "DELETE",
+		PathPattern:        "/public/cloud/eventdrivenharvest",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &PublicCloudEventdrivenharvestDisableReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*PublicCloudEventdrivenharvestDisableOK), nil
+
+}
+
+/*
 PublicCloudEventdrivenharvestDisableConsumerByOrganizationidDelete removes consumer
 
 TODO: Add Description
@@ -141,6 +171,36 @@ func (a *Client) PublicCloudEventdrivenharvestDisableConsumerByOrganizationidDel
 		return nil, err
 	}
 	return result.(*PublicCloudEventdrivenharvestDisableConsumerByOrganizationidDeleteOK), nil
+
+}
+
+/*
+PublicCloudEventdrivenharvestEnable enables event driven harvesting
+
+Enables Event Driven Harvesting for the current org
+*/
+func (a *Client) PublicCloudEventdrivenharvestEnable(params *PublicCloudEventdrivenharvestEnableParams) (*PublicCloudEventdrivenharvestEnableOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicCloudEventdrivenharvestEnableParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicCloudEventdrivenharvestEnable",
+		Method:             "POST",
+		PathPattern:        "/public/cloud/eventdrivenharvest",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &PublicCloudEventdrivenharvestEnableReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*PublicCloudEventdrivenharvestEnableOK), nil
 
 }
 
