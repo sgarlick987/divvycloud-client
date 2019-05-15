@@ -55,6 +55,36 @@ func (a *Client) PublicCloudConsumersGet(params *PublicCloudConsumersGetParams) 
 }
 
 /*
+PublicCloudEventdrivenharvest gets event driven harvesting
+
+Gets the status of Event Driven Harvesting for the current org
+*/
+func (a *Client) PublicCloudEventdrivenharvest(params *PublicCloudEventdrivenharvestParams) (*PublicCloudEventdrivenharvestOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPublicCloudEventdrivenharvestParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "PublicCloudEventdrivenharvest",
+		Method:             "GET",
+		PathPattern:        "/public/cloud/eventdrivenharvest",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &PublicCloudEventdrivenharvestReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*PublicCloudEventdrivenharvestOK), nil
+
+}
+
+/*
 PublicCloudEventdrivenharvestByOrganizationidPost adds consumer
 
 TODO: Add Description

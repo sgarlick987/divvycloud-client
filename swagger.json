@@ -62,6 +62,43 @@
       }
     },
     "/public/cloud/eventdrivenharvest": {
+      "get": {
+        "description": "Gets the status of Event Driven Harvesting for the current org",
+        "summary": "Get Event Driven Harvesting",
+        "tags": [
+          "Event Driven Harvesting"
+        ],
+        "operationId": "PublicCloudEventdrivenharvest",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "X-Auth-Token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/EventDrivenHarvestingStatus"
+            },
+            "headers": {}
+          }
+        }
+      },
       "post": {
         "description": "Enables Event Driven Harvesting for the current org",
         "summary": "Enable Event Driven Harvesting",
@@ -2690,6 +2727,21 @@
       "required": [
         "username",
         "password"
+      ]
+    },
+    "EventDrivenHarvestingStatus": {
+      "title": "EventDrivenHarvestingStatus",
+      "example": {
+        "event_driven_harvest_enabled": "true"
+      },
+      "type": "object",
+      "properties": {
+        "event_driven_harvest_enabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "event_driven_harvest_enabled"
       ]
     }
   },
